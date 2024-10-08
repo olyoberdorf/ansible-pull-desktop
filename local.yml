@@ -10,6 +10,7 @@
 
 # packages
 - hosts: localhost
+  become: true
   tasks:
   - name: git
     apt: name=git state=latest
