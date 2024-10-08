@@ -6,11 +6,10 @@
     - name: add vscodium apt-key
       apt_key: 
         url: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-        file: /usr/share/keyrings/vscodium-archive-keyring.asc
         state: present   
     - name: pre-run ensure vscodium repo
       apt_repository:
-        repo: "deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.asc ] https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main"
+        repo: "deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main"
         state: present
     - name: pre-run | update package cache (debian, etc)
       tags: always
