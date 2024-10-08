@@ -11,6 +11,10 @@
       apt_repository:
         repo: "deb https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/debs vscodium main"
         state: present
+    - name: Debian unstable (for vbox-guest additions)
+      apt_repository:
+        repo: deb http://deb.debian.org/debian/ {{ ansible_lsb.codename|lower }} main contrib non-free
+        state: present
     - name: pre-run | update package cache (debian, etc)
       tags: always
       apt: update_cache=yes
@@ -30,10 +34,12 @@
     apt: name=mariadb-client state=latest
   - name: VS Codium
     apt: name=codium state=latest
-  - name: VBox Guest Additions
-    apt: name=virtualbox-guest-utils state=latest
+  - name: VBox Guest Additions (X11)
+    apt: name=virtualbox-guest-x11 state=latest
+  - name: VBox Guest Additions (DKMS)
+    apt: name=virtualbox-guest-dkms state=latest
 
-# end of run cleanup and reporting
+    # end of run cleanup and reporting
 - hosts: localhost
   become: true
   tasks:
