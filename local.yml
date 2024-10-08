@@ -29,7 +29,7 @@
   - name: mariadb-client
     apt: name=mariadb-client state=latest
   - name: VS Codium
-    apt: name=vscodium state=latest
+    apt: name=codium state=latest
   - name: VBox Guest Additions
     apt: name=virtualbox-guest-utils state=latest
 
