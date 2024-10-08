@@ -16,8 +16,10 @@
     apt: name=git state=latest
   - name: kde
     apt: name=task-kde-desktop state=latest
-  - name: mariadb
-    apt: name=mariadb state=latest
+  - name: mariadb-server
+    apt: name=mariadb-server state=latest
+  - name: mariadb-client
+    apt: name=mariadb-client state=latest
   - name: VS Code
     apt: name=code state=latest
 
