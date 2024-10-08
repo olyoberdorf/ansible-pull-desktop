@@ -18,6 +18,21 @@
     - name: Install Proton Repo
       apt:
         deb: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.4_all.deb
+    - name: add brave apt-key
+      apt_key:
+        url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+        state: present
+    - name: add brave repo
+      apt_repository:
+        repo: "deb https://brave-browser-apt-release.s3.brave.com/ stable main"
+        state: present
+    - name: add mullvad apt-key
+      apt_key:
+        url: https://repository.mullvad.net/deb/mullvad-keyring.asc
+        state: present
+    - name: add mullvad repo
+      apt_repository:
+        repo: "deb https://repository.mullvad.net/deb/stable sid main"
     - name: pre-run | update package cache (debian, etc)
       tags: always
       apt: update_cache=yes
@@ -49,6 +64,13 @@
     apt: name=gir1.2-ayatanaappindicator3-0.1 state=latest
   - name: Install ProtonVPN Gnome Applet support (3/3)
     apt: name=gnome-shell-extension-appindicator
+  - name: Install ProtonMail Bridge (Debian)
+    apt:
+      deb: https://proton.me/download/bridge/protonmail-bridge_3.13.0-1_amd64.deb
+  - name: Install Brave Browser
+    apt: name=brave-browser state=latest
+  - name: Install Mullvad Browser
+    apt: name=mullvad-browser state=latest
 
 # end of run cleanup and reporting
 - hosts: localhost
