@@ -3,6 +3,10 @@
   tags: always
   become: true
   pre_tasks:
+    - name: pre-run ensure MS repo
+      apt_repository:
+        repo: "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
+        state: present
     - name: pre-run | update package cache (debian, etc)
       tags: always
       apt: update_cache=yes
@@ -22,6 +26,8 @@
     apt: name=mariadb-client state=latest
   - name: VS Code
     apt: name=code state=latest
+  - name: VBox Guest Additions
+    apt: name=virtualbox-guest-utils state=latest
 
 # end of run cleanup and reporting
 - hosts: localhost
