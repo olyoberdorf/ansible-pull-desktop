@@ -15,6 +15,9 @@
       apt_repository:
         repo: deb http://deb.debian.org/debian/ sid main contrib non-free
         state: present
+    - name: Install Proton Repo
+      apt:
+        deb: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.4_all.deb
     - name: pre-run | update package cache (debian, etc)
       tags: always
       apt: update_cache=yes
@@ -38,8 +41,16 @@
     apt: name=virtualbox-guest-utils state=latest
   - name: VBox Guest Additions (X11)
     apt: name=virtualbox-guest-x11 state=latest
+  - name: Install ProtonVPN
+    apt: name=proton-vpn-gnome-desktop state=latest
+  - name: Install ProtonVPN Gnome Applet support (1/3)
+    apt: name=libayatana-appindicator3-1 state=latest
+  - name: Install ProtonVPN Gnome Applet support (2/3)
+    apt: name=gir1.2-ayatanaappindicator3-0.1 state=latest
+  - name: Install ProtonVPN Gnome Applet support (3/3)
+    apt: name=gnome-shell-extension-appindicator
 
-    # end of run cleanup and reporting
+# end of run cleanup and reporting
 - hosts: localhost
   become: true
   tasks:
