@@ -34,10 +34,10 @@
     apt: name=mariadb-client state=latest
   - name: VS Codium
     apt: name=codium state=latest
+  - name: VBox Guest Additions (Utis)
+    apt: name=virtualbox-guest-utils state=latest
   - name: VBox Guest Additions (X11)
     apt: name=virtualbox-guest-x11 state=latest
-  - name: VBox Guest Additions (DKMS)
-    apt: name=virtualbox-guest-dkms state=latest
 
     # end of run cleanup and reporting
 - hosts: localhost
