@@ -13,7 +13,7 @@
         state: present
     - name: Debian unstable (for vbox-guest additions)
       apt_repository:
-        repo: deb http://deb.debian.org/debian/ {{ ansible_lsb.codename|lower }} main contrib non-free
+        repo: deb http://deb.debian.org/debian/ sid main contrib non-free
         state: present
     - name: pre-run | update package cache (debian, etc)
       tags: always
